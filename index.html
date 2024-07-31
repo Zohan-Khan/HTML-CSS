@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Tutorial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .navbar {
+            display: flex;
+            background-color: #222;
+            overflow: hidden;
+        }
+        .navbar a {
+            padding: 14px 20px;
+            display: block;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .sidebar {
+            width: 20%;
+            background-color: #f4f4f4;
+            padding: 10px;
+            float: left;
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+        .content {
+            width: 75%;
+            float: right;
+            padding: 20px;
+            display: none;
+        }
+        .home-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .home-btn:hover {
+            background-color: darkgreen;
+        }
+        .signup-form, .thank-you {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 75%;
+            margin: 20px auto;
+        }
+        .signup-form input[type="text"],
+        .signup-form input[type="email"],
+        .thank-you textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .signup-form input[type="submit"],
+        .thank-you input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .signup-form input[type="submit"]:hover,
+        .thank-you input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>CSS Tutorial</h1>
+</div>
+
+<div class="navbar">
+    <a href="javascript:void(0)" onclick="showSection('home')">Home</a>
+    <a href="javascript:void(0)" onclick="showSection('signup')">Sign Up</a>
+    <a href="javascript:void(0)" onclick="showSection('thankyou')">Thank You</a>
+    <!-- Add more menu items as needed -->
+</div>
+
+<div class="sidebar">
+    <a href="#">CSS Syntax</a>
+    <a href="#">CSS Introduction</a>
+    <a href="#">CSS Selectors</a>
+    <a href="#">CSS How to</a>
+    <a href="#">CSS Comment</a>
+    <a href="#">CSS Color</a>
+    <!-- Add more sidebar items as needed -->
+</div>
+
+<div id="home" class="content" style="display: block;">
+    <p>Welcome to the CSS tutorial. Click on the topics in the sidebar to start learning.</p>
+    <a href="javascript:void(0)" class="home-btn" onclick="showSection('signup')">Sign Up</a>
+</div>
+
+<div id="signup" class="signup-form">
+    <h2>Signup Form</h2>
+    <form onsubmit="submitSignup(event)">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <input type="submit" value="Subscribe">
+    </form>
+</div>
+
+<div id="thankyou" class="thank-you">
+    <h2>Thank You, <span id="user-name">User</span>!</h2>
+    <p>We appreciate your subscription. Please provide your feedback below:</p>
+    
+    <form onsubmit="submitFeedback(event)">
+        <textarea name="feedback" placeholder="Your feedback..."></textarea>
+        <input type="submit" value="Submit Feedback">
+    </form>
+</div>
+
+<script>
+    function showSection(sectionId) {
+        document.querySelectorAll('.content, .signup-form, .thank-you').forEach(section => {
+            section.style.display = 'none';
+        });
+        document.getElementById(sectionId).style.display = 'block';
+    }
+
+    function submitSignup(event) {
+        event.preventDefault();
+        const name = document.getElementById('name').value;
+        document.getElementById('user-name').textContent = name;
+        showSection('thankyou');
+    }
+
+    function submitFeedback(event) {
+        event.preventDefault();
+        alert('Thank you for your feedback!');
+    }
+</script>
+
+</body>
+</html>
